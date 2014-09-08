@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Users | " ~ user.getName() %}
+
+{% block body %}
+    <h1 class="title">{{ user.getName() }}</h1>
+
+    [<a href="{{ path('edit_user', {'id': id}) }}" >{% trans from 'EgilsUserBundle' %}user.edit{% endtrans %}</a>]
+    [<a href="{{ path('remove_user', {'id': user.getId()}) }}" >{% trans from 'EgilsUserBundle' %}user.delete{% endtrans %}</a>]
+{% endblock body %}

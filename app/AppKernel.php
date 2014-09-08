@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\RestExtraBundle\BazingaRestExtraBundle(),
             new Egils\GroupsBundle\EgilsGroupsBundle(),
             new Egils\SandboxBundle\EgilsSandboxBundle(),
+            new Egils\UserBundle\EgilsUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Users | New user" %}
+
+{% block body %}
+    <h1 class="title">{% trans from 'EgilsUserBundle' %}user.new.headline{% endtrans %}</h1>
+
+    {%  if (form is defined) %}
+        <form action="{{ url('post_user') }}" method="POST" {{ form_enctype(form) }}>
+
+            {{ form_widget(form) }}
+
+            <input type="submit" value="{% trans from 'EgilsUserBundle' %}user.new.submit{% endtrans %}">
+        </form>
+    {% endif %}
+{% endblock body %}

@@ -2,6 +2,11 @@ egils_groups:
     resource: "@EgilsGroupsBundle/Controller/GroupController.php"
     type:     rest
 
+egils_user:
+    resource: "@EgilsUserBundle/Controller/UserController.php"
+    type:     rest
+
+
 NelmioApiDocBundle:
   resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
   prefix:   /api/doc

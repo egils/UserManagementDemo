@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Users" %}
+
+{%- block body %}
+    <h1 class="title">{% trans from 'EgilsUserBundle' %}users.list.headline{% endtrans %}</h1>
+
+    {% if users|length > 0 %}
+        <ul>
+        {% for user in users%}
+            <li>
+                <a href="{{ path('get_user', {'id': user.getId()}) }}" >{{ user.getName() }}</a>&nbsp;
+                [<a href="{{ path('edit_user', {'id': user.getId()}) }}" >{% trans from 'EgilsUserBundle' %}user.edit{% endtrans %}</a>]&nbsp;
+                [<a href="{{ path('remove_user', {'id': user.getId()}) }}" >{% trans from 'EgilsUserBundle' %}user.delete{% endtrans %}</a>]
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+
+    {% endif %}
+    <a href="{{ url('new_user') }}">{% trans from 'EgilsUserBundle' %}user.new.headline{% endtrans %}</a>
+{% endblock body -%}

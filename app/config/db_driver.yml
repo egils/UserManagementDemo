@@ -3,3 +3,9 @@ egils_groups:
     class:
         model:
             group: Egils\SandboxBundle\Entity\Group
+
+egils_user:
+    db_driver: orm
+    class:
+        model:
+            user: Egils\SandboxBundle\Entity\User
