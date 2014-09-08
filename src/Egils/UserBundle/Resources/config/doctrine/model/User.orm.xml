@@ -10,7 +10,7 @@ http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
         <field name="name" column="name" type="string" length="255"/>
 
-        <!--<many-to-many field="groups" target-entity="Egils\GroupsBundle\Model\GroupInterface">-->
+        <!--<many-to-many field="groups" target-entity="Egils\UserBundle\Model\GroupInterface">-->
             <!--<join-table name="UserGroups">-->
                 <!--<join-columns>-->
                     <!--<join-column name="user_id" referenced-column-name="id" />-->

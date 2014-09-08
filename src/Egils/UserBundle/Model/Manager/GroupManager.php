@@ -8,11 +8,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Model\Manager;
+namespace Egils\UserBundle\Model\Manager;
 
 /**
  * Class GroupManager
- * @package Egils\GroupsBundle\Model\Manager
+ * @package Egils\UserBundle\Model\Manager
  */
 abstract class GroupManager implements GroupManagerInterface
 {

@@ -39,6 +39,8 @@ class EgilsUserExtension extends Extension
         $loader->load('db_driver/' . sprintf('%s.xml', $config['db_driver']));
         $container->setParameter('egils_user.model.user.class', $config['class']['model']['user']);
         $container->setAlias('egils_user.manager.user', $config['user_manager']);
-        $container->setAlias('egils_user.provider.user', $config['user_provider']);
+
+        $container->setParameter('egils_user.model.group.class', $config['class']['model']['group']);
+        $container->setAlias('egils_user.manager.group', $config['group_manager']);
     }
 }

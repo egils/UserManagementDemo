@@ -73,7 +73,7 @@ class UserController extends FOSRestController
         $start = null == $offset ? 0 : $offset + 1;
         $limit = $paramFetcher->get('limit');
 
-        $users = $this->get('egils_user.provider.user')->fetch($start, $limit);
+        $users = $this->getUserManager()->fetch($start, $limit);
 
         return array('users' => $users, 'offset' => $offset, 'limit' => $limit);
     }
@@ -100,7 +100,7 @@ class UserController extends FOSRestController
      */
     public function getUserAction(Request $request, $id)
     {
-        $user = $this->get('egils_user.provider.user')->find($id);
+        $user = $this->getUserManager()->find($id);
         if (false === $user) {
             throw $this->createNotFoundException("User does not exist.");
         }
@@ -155,7 +155,7 @@ class UserController extends FOSRestController
      */
     public function editUserAction(Request $request, $id)
     {
-        $user = $this->get('egils_user.provider.user')->find($id);
+        $user = $this->getUserManager()->find($id);
 
         if (false === $user) {
             throw new NotFoundHttpException("User does not exist.");
@@ -230,7 +230,7 @@ class UserController extends FOSRestController
      */
     public function putUserAction(Request $request, $id)
     {
-        $user = $this->get('egils_user.provider.user')->find($id);
+        $user = $this->getUserManager()->find($id);
         if (null === $user) {
             throw new NotFoundHttpException("User does not exist.");
         } else {
@@ -267,7 +267,7 @@ class UserController extends FOSRestController
      */
     public function deleteUserAction(Request $request, $id)
     {
-        $user = $this->get('egils_user.provider.user')->find($id);
+        $user = $this->getUserManager()->find($id);
         if (null === $user) {
             $statusCode = Codes::HTTP_NOT_FOUND;
         } else {

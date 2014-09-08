@@ -8,16 +8,16 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Doctrine\EntityManager;
+namespace Egils\UserBundle\Doctrine\EntityManager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Egils\GroupsBundle\Model\GroupInterface;
-use Egils\GroupsBundle\Model\Manager\GroupManager as BaseGroupManager;
+use Egils\UserBundle\Model\GroupInterface;
+use Egils\UserBundle\Model\Manager\GroupManager as BaseGroupManager;
 
 /**
  * Class GroupManager
- * @package Egils\GroupsBundle\Doctrine\EntityManager
+ * @package Egils\UserBundle\Doctrine\EntityManager
  */
 class GroupManager extends BaseGroupManager
 {
@@ -102,6 +102,28 @@ class GroupManager extends BaseGroupManager
     public function all()
     {
         return $this->repository->findAll();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fetch($offset, $limit)
+    {
+        $builder = $this->repository->createQueryBuilder('g');
+        $query = $builder->select('g')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return $query->getResult();
     }
 
     /**

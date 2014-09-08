@@ -8,11 +8,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Model;
+namespace Egils\UserBundle\Model;
 
 /**
  * Class Group
- * @package Egils\GroupsBundle\Model
+ * @package Egils\UserBundle\Model
  */
 abstract class Group implements GroupInterface
 {

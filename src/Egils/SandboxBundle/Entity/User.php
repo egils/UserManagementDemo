@@ -11,7 +11,7 @@
 namespace Egils\SandboxBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Egils\GroupsBundle\Model\GroupInterface;
+use Egils\UserBundle\Model\GroupInterface;
 use Egils\UserBundle\Model\User as BaseUser;
 
 /**

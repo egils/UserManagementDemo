@@ -4,11 +4,14 @@
 
 {% block body %}
     <h1 class="title">{{ user.getName() }}</h1>
+    {% trans from 'EgilsUserGroups' %}groups.list.headline{% endtrans %}
+    <ul>
     {% for group in user.getGroups() %}
-        {{ group.getName() }}
+        <li>{{ group.getName() }}</li>
     {% else %}
         {% trans from 'EgilsUserBundle' %}user.groups.empty{% endtrans %}
     {% endfor %}
+    </ul>
 
     <div style="margin-top: 10px">
         [<a href="{{ path('edit_user', {'id': id}) }}" >{% trans from 'EgilsUserBundle' %}user.edit{% endtrans %}</a>]

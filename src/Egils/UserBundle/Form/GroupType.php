@@ -7,16 +7,16 @@
 * For the full copyright and license information, please view the LICENSE
 * file that was distributed with this source code.
 */
-namespace Egils\GroupsBundle\Form;
+namespace Egils\UserBundle\Form;
 
-use Egils\GroupsBundle\Model\Manager\GroupManagerInterface;
+use Egils\UserBundle\Model\Manager\GroupManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class GroupType
- * @package Egils\GroupsBundle\Form
+ * @package Egils\UserBundle\Form
  */
 class GroupType extends AbstractType
 {
@@ -38,7 +38,7 @@ class GroupType extends AbstractType
     {
         $resolver->setDefaults(array(
             'intention' => 'group',
-            'translation_domain' => 'EgilsGroupsBundle'
+            'translation_domain' => 'EgilsUserBundle'
         ));
     }
 

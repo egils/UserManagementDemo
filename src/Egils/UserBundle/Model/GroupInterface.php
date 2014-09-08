@@ -8,11 +8,11 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Model;
+namespace Egils\UserBundle\Model;
 
 /**
  * Interface GroupInterface
- * @package Egils\GroupsBundle\Model
+ * @package Egils\UserBundle\Model
  */
 interface GroupInterface
 {

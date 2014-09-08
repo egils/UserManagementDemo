@@ -8,10 +8,10 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Controller;
+namespace Egils\UserBundle\Controller;
 
-use Egils\GroupsBundle\Form\GroupType;
-use Egils\GroupsBundle\Model\Manager\GroupManagerInterface;
+use Egils\UserBundle\Form\GroupType;
+use Egils\UserBundle\Model\Manager\GroupManagerInterface;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\RouteRedirectView;
@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class GroupController
- * @package Egils\GroupsBundle\Controller
+ * @package Egils\UserBundle\Controller
  */
 class GroupController extends FOSRestController
 {
@@ -35,7 +35,7 @@ class GroupController extends FOSRestController
      */
     private function getGroupManager()
     {
-        return $this->get('egils_groups.manager.group');
+        return $this->get('egils_user.manager.group');
     }
 
     /**
@@ -64,7 +64,7 @@ class GroupController extends FOSRestController
         $start = null == $offset ? 0 : $offset + 1;
         $limit = $paramFetcher->get('limit');
 
-        $groups = $this->get('egils_groups.provider.group')->fetch($start, $limit);
+        $groups = $this->getGroupManager()->fetch($start, $limit);
 
         return array('groups' => $groups, 'offset' => $offset, 'limit' => $limit);
     }
@@ -73,7 +73,7 @@ class GroupController extends FOSRestController
      * Get a single group.
      *
      * @ApiDoc(
-     *   output = "Egils\GroupsBundle\Model\Group",
+     *   output = "Egils\UserBundle\Model\Group",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     404 = "Returned when the group is not found"
@@ -91,7 +91,7 @@ class GroupController extends FOSRestController
      */
     public function getGroupAction(Request $request, $id)
     {
-        $group = $this->get('egils_groups.provider.group')->find($id);
+        $group = $this->getGroupManager()->find($id);
         if (false === $group) {
             throw $this->createNotFoundException("Group does not exist.");
         }
@@ -144,7 +144,7 @@ class GroupController extends FOSRestController
      */
     public function editGroupAction(Request $request, $id)
     {
-        $group = $this->get('egils_groups.provider.group')->find($id);
+        $group = $this->getGroupManager()->find($id);
 
         if (false === $group) {
             throw new NotFoundHttpException("Group does not exist.");
@@ -160,7 +160,7 @@ class GroupController extends FOSRestController
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Egils\GroupsBundle\Form\GroupType",
+     *   input = "Egils\UserBundle\Form\GroupType",
      *   statusCodes = {
      *     200 = "Returned when successful",
      *     400 = "Returned when the form has errors"
@@ -168,7 +168,7 @@ class GroupController extends FOSRestController
      * )
      *
      * @Annotations\View(
-     *   template = "EgilsGroupsBundle:Group:newGroup.html.twig",
+     *   template = "EgilsUserBundle:Group:newGroup.html.twig",
      *   statusCode = Codes::HTTP_BAD_REQUEST
      * )
      *
@@ -198,7 +198,7 @@ class GroupController extends FOSRestController
      *
      * @ApiDoc(
      *   resource = true,
-     *   input = "Egils\GroupsBundle\Form\GroupType",
+     *   input = "Egils\UserBundle\Form\GroupType",
      *   statusCodes = {
      *     204 = "Returned when successful",
      *     400 = "Returned when the form has errors"
@@ -206,7 +206,7 @@ class GroupController extends FOSRestController
      * )
      *
      * @Annotations\View(
-     *   template="EgilsGroupsBundle:Group:editGroup.html.twig",
+     *   template="EgilsUserBundle:Group:editGroup.html.twig",
      *   templateVar="form"
      * )
      *
@@ -219,7 +219,7 @@ class GroupController extends FOSRestController
      */
     public function putGroupAction(Request $request, $id)
     {
-        $group = $this->get('egils_groups.provider.group')->find($id);
+        $group = $this->getGroupManager()->find($id);
         if (null === $group) {
             throw new NotFoundHttpException("Group does not exist.");
         } else {
@@ -245,7 +245,8 @@ class GroupController extends FOSRestController
      *   resource = true,
      *   statusCodes={
      *     204="Returned when successful",
-     *     404 = "Returned when the group is not found"
+     *     404="Returned when the group is not found",
+     *     409="Returned when cannot delete because resource is being used",
      *   }
      * )
      *
@@ -256,12 +257,17 @@ class GroupController extends FOSRestController
      */
     public function deleteGroupAction(Request $request, $id)
     {
-        $group = $this->get('egils_groups.provider.group')->find($id);
+        $group = $this->getGroupManager()->find($id);
         if (null === $group) {
             $statusCode = Codes::HTTP_NOT_FOUND;
         } else {
-            $statusCode = Codes::HTTP_NO_CONTENT;
-            $this->getGroupManager()->remove($group, true);
+
+            if ($this->get('egils_user.manager.user')->findManyWithGroup($group)) {
+                $statusCode = Codes::HTTP_CONFLICT;
+            } else {
+                $statusCode = Codes::HTTP_NO_CONTENT;
+                $this->getGroupManager()->remove($group, true);
+            }
         }
 
         return $this->routeRedirectView('get_groups', array(), $statusCode);

@@ -10,7 +10,7 @@
 
 namespace Egils\UserBundle\Form;
 
-use Egils\GroupsBundle\Model\Manager\GroupManagerInterface;
+use Egils\UserBundle\Model\Manager\GroupManagerInterface;
 use Egils\UserBundle\Form\DataTransformer\UserGroupsTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

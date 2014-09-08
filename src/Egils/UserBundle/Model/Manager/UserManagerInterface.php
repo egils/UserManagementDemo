@@ -10,6 +10,7 @@
 
 namespace Egils\UserBundle\Model\Manager;
 
+use Egils\UserBundle\Model\GroupInterface;
 use Egils\UserBundle\Model\UserInterface;
 
 /**
@@ -57,4 +58,26 @@ interface UserManagerInterface
      * @return string
      */
     public function getClass();
+
+    /**
+     * Get specific User by its id.
+     * @param $id
+     * @return UserInterface
+     */
+    public function find($id);
+
+    /**
+     * Get range of Users.
+     *
+     * @param $offset
+     * @param $limit
+     * @return UserInterface[]|array
+     */
+    public function fetch($offset, $limit);
+
+    /**
+     * @param GroupInterface $group
+     * @return UserInterface[]
+     */
+    public function findManyWithGroup(GroupInterface $group);
 }

@@ -8,9 +8,8 @@
     </head>
     <body>
         <div id="navigation">
-            <a href="{{ url('get_groups') }}">{% trans from 'EgilsGroupsBundle' %}groups.list.headline{% endtrans %}</a>
-
             <a href="{{ url('get_users') }}">{% trans from 'EgilsUserBundle' %}users.list.headline{% endtrans %}</a>
+            <a href="{{ url('get_groups') }}">{% trans from 'EgilsUserGroups' %}groups.list.headline{% endtrans %}</a>
         </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}

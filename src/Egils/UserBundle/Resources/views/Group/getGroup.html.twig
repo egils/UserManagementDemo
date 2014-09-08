@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Groups | " ~ group.getName() %}
+
+{% block body %}
+    <h1 class="title">{{ group.getName() }}</h1>
+
+    [<a href="{{ path('edit_group', {'id': id}) }}" >{% trans from 'EgilsUserGroups' %}group.edit{% endtrans %}</a>]
+    [<a href="{{ path('remove_group', {'id': group.getId()}) }}" >{% trans from 'EgilsUserGroups' %}group.delete{% endtrans %}</a>]
+{% endblock body %}

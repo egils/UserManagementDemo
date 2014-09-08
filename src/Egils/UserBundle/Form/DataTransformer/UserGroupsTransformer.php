@@ -10,8 +10,8 @@
 
 namespace Egils\UserBundle\Form\DataTransformer;
 
-use Egils\GroupsBundle\Model\GroupInterface;
-use Egils\GroupsBundle\Model\Manager\GroupManagerInterface;
+use Egils\UserBundle\Model\GroupInterface;
+use Egils\UserBundle\Model\Manager\GroupManagerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -40,8 +40,10 @@ class UserGroupsTransformer implements DataTransformerInterface
     public function transform($groups)
     {
         $data = array();
-        foreach ($groups as $group) {
-            $data[] = $group->getId();
+        if (null !== $groups) {
+            foreach ($groups as $group) {
+                $data[] = $group->getId();
+            }
         }
 
         return $data;

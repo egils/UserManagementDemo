@@ -8,13 +8,13 @@
 * file that was distributed with this source code.
 */
 
-namespace Egils\GroupsBundle\Model\Manager;
+namespace Egils\UserBundle\Model\Manager;
 
-use Egils\GroupsBundle\Model\GroupInterface;
+use Egils\UserBundle\Model\GroupInterface;
 
 /**
  * Interface GroupManagerInterface
- * @package Egils\GroupsBundle\Model\Manager
+ * @package Egils\UserBundle\Model\Manager
  */
 interface GroupManagerInterface
 {
@@ -57,6 +57,22 @@ interface GroupManagerInterface
      * @return GroupInterface[]
      */
     public function all();
+
+    /**
+     * Get specific Group by its id.
+     * @param $id
+     * @return GroupInterface
+     */
+    public function find($id);
+
+    /**
+     * Get range of Groups.
+     *
+     * @param $offset
+     * @param $limit
+     * @return GroupInterface[]|array
+     */
+    public function fetch($offset, $limit);
 
     /**
      * Get groups by list of identifiers.

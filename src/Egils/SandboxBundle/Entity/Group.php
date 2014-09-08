@@ -10,7 +10,7 @@
 
 namespace Egils\SandboxBundle\Entity;
 
-use Egils\GroupsBundle\Model\Group as BaseGroup;
+use Egils\UserBundle\Model\Group as BaseGroup;
 
 /**
  * Class Group

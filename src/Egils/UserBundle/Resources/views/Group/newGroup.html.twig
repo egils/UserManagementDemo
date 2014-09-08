@@ -3,14 +3,14 @@
 {% block title "Groups | New group" %}
 
 {% block body %}
-    <h1 class="title">{% trans from 'EgilsGroupsBundle' %}group.new.headline{% endtrans %}</h1>
+    <h1 class="title">{% trans from 'EgilsUserGroups' %}group.new.headline{% endtrans %}</h1>
 
     {%  if (form is defined) %}
         <form action="{{ url('post_group') }}" method="POST" {{ form_enctype(form) }}>
 
             {{ form_widget(form) }}
 
-            <input type="submit" value="{% trans from 'EgilsGroupsBundle' %}group.new.submit{% endtrans %}">
+            <input type="submit" value="{% trans from 'EgilsUserGroups' %}group.new.submit{% endtrans %}">
         </form>
     {% endif %}
 {% endblock body %}

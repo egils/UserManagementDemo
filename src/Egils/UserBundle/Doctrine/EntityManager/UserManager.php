@@ -12,6 +12,8 @@ namespace Egils\UserBundle\Doctrine\EntityManager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
+use Egils\UserBundle\Model\GroupInterface;
 use Egils\UserBundle\Model\UserInterface;
 use Egils\UserBundle\Model\Manager\UserManager as BaseUserManager;
 
@@ -89,10 +91,47 @@ class UserManager extends BaseUserManager
     }
 
     /**
+     * @inheritdoc
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fetch($offset, $limit)
+    {
+        $builder = $this->repository->createQueryBuilder('u');
+        $query = $builder->select('u')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getClass()
     {
         return $this->class;
+    }
+
+    /**
+     * @param GroupInterface $group
+     * @return UserInterface[]
+     */
+    public function findManyWithGroup(GroupInterface $group)
+    {
+        $builder = $this->repository->createQueryBuilder('u');
+        $query = $builder->select('u')
+            ->innerJoin('u.groups', 'g', Join::WITH, 'g = :group')
+            ->setParameter('group', $group)
+            ->getQuery();
+
+        return $query->getResult();
     }
 }

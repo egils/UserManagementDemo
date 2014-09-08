@@ -1,11 +1,6 @@
-egils_groups:
-    db_driver: orm
-    class:
-        model:
-            group: Egils\SandboxBundle\Entity\Group
-
 egils_user:
     db_driver: orm
     class:
         model:
             user: Egils\SandboxBundle\Entity\User
+            group: Egils\SandboxBundle\Entity\Group

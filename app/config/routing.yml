@@ -1,5 +1,5 @@
 egils_groups:
-    resource: "@EgilsGroupsBundle/Controller/GroupController.php"
+    resource: "@EgilsUserBundle/Controller/GroupController.php"
     type:     rest
 
 egils_user:

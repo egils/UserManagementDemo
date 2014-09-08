@@ -10,7 +10,7 @@
 
 namespace Egils\UserBundle\Model;
 
-use Egils\GroupsBundle\Model\GroupInterface;
+use Egils\UserBundle\Model\GroupInterface;
 
 /**
  * Interface UserInterface

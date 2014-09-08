@@ -3,7 +3,7 @@
                   xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
 http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
-    <mapped-superclass name="Egils\GroupsBundle\Model\Group">
+    <mapped-superclass name="Egils\UserBundle\Model\Group">
         <!--<id name="id" type="integer" column="id">-->
         <!--<generator strategy="AUTO"/>-->
         <!--</id>-->

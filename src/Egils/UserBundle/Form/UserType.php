@@ -45,6 +45,7 @@ class UserType extends AbstractType
         ));
 
         $builder->add('groups', 'egils_user_groups', array(
+            'description' => 'A list of groups to set for user',
         ));
     }
 
