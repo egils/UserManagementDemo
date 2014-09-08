@@ -22,19 +22,6 @@ class GroupType extends AbstractType
 {
 
     /**
-     * @var GroupManagerInterface
-     */
-    private $groupManager;
-
-    /**
-     * @param GroupManagerInterface $groupManager
-     */
-    public function __construct(GroupManagerInterface $groupManager)
-    {
-        $this->groupManager = $groupManager;
-    }
-
-    /**
      * @inheritdoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options)

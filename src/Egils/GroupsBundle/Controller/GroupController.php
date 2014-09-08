@@ -119,7 +119,7 @@ class GroupController extends FOSRestController
      */
     public function newGroupAction()
     {
-        return $this->createForm(new GroupType($this->getGroupManager()));
+        return $this->createForm(new GroupType());
     }
 
     /**
@@ -150,7 +150,7 @@ class GroupController extends FOSRestController
             throw new NotFoundHttpException("Group does not exist.");
         }
 
-        $form = $this->createForm(new GroupType($this->getGroupManager()), $group);
+        $form = $this->createForm(new GroupType(), $group);
 
         return $form;
     }
@@ -179,7 +179,7 @@ class GroupController extends FOSRestController
     public function postGroupAction(Request $request)
     {
         $group = $this->getGroupManager()->create();
-        $form = $this->createForm(new GroupType($this->getGroupManager()), $group);
+        $form = $this->createForm(new GroupType(), $group);
 
         $form->submit($request);
         if ($form->isValid()) {
@@ -226,7 +226,7 @@ class GroupController extends FOSRestController
             $statusCode = Codes::HTTP_NO_CONTENT;
         }
 
-        $form = $this->createForm(new GroupType($this->getGroupManager()), $group);
+        $form = $this->createForm(new GroupType(), $group);
 
         $form->submit($request);
         if ($form->isValid()) {
