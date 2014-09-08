@@ -38,7 +38,7 @@ class GroupType extends AbstractType
     {
         $resolver->setDefaults(array(
             'intention' => 'group',
-            'translation_domain' => 'EgilsUserBundle'
+            'translation_domain' => 'EgilsUserGroups'
         ));
     }
 

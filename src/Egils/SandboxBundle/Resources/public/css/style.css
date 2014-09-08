@@ -1,0 +1,12 @@
+#navigation {
+    background-color: #313131;
+    padding: 5px;
+}
+
+#navigation a {
+    color: #fff;
+}
+
+.mt {
+    margin-top: 10px;
+}

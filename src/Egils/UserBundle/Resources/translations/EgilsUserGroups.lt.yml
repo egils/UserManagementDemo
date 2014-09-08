@@ -1,6 +1,7 @@
 group.new.headline: 'Sukurti naują grupę'
 group.new.submit: 'Sukurti'
-Name: 'Pavadinimas'
+name: 'Pavadinimas'
+groups: 'Grupės'
 edit: 'Redaguoti'
 group.edit: 'Redaguoti'
 group.delete: 'Pašalinti'

@@ -1,6 +1,7 @@
 user.new.headline: 'Sukurti naują vartotoją'
 user.new.submit: 'Sukurti'
 name: 'Vardas'
+groups: 'Grupės'
 edit: 'Redaguoti'
 user.edit: 'Redaguoti'
 user.delete: 'Pašalinti'
