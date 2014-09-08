@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block title "Groups | Edit group" %}
+
+{% block body %}
+    <h1 class="title">{% trans from 'EgilsGroupsBundle' %}group.edit.headline{% endtrans %}</h1>
+
+    {%  if (form is defined) %}
+        <form action="{{ path('put_group', {'id': id}) }}" method="POST" {{ form_enctype(form) }}>
+            <input type="hidden" name="_method" value="put" />
+
+            {{ form_widget(form) }}
+
+            <input type="submit" value="{% trans from 'EgilsGroupsBundle' %}group.edit.submit{% endtrans %}">
+        </form>
+    {% endif %}
+{% endblock body %}

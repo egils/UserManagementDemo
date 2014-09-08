@@ -11,6 +11,7 @@
 namespace Egils\GroupsBundle\Doctrine\Provider;
 
 use Doctrine\ORM\EntityRepository;
+use Egils\GroupsBundle\Model\GroupInterface;
 use Egils\GroupsBundle\Model\Provider\GroupProviderInterface;
 
 /**
@@ -30,5 +31,27 @@ class GroupProvider implements GroupProviderInterface
     public function __construct(EntityRepository $repository)
     {
         $this->repository = $repository;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fetch($offset, $limit)
+    {
+        $builder = $this->repository->createQueryBuilder('g');
+        $query = $builder->select('g')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery();
+
+        return $query->getResult();
     }
 }

@@ -1,7 +1,6 @@
 egils_groups:
-    resource: "@EgilsGroupsBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    resource: "@EgilsGroupsBundle/Controller/GroupController.php"
+    type:     rest
 
 NelmioApiDocBundle:
   resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
