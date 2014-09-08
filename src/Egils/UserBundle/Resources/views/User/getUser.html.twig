@@ -4,7 +4,14 @@
 
 {% block body %}
     <h1 class="title">{{ user.getName() }}</h1>
+    {% for group in user.getGroups() %}
+        {{ group.getName() }}
+    {% else %}
+        {% trans from 'EgilsUserBundle' %}user.groups.empty{% endtrans %}
+    {% endfor %}
 
-    [<a href="{{ path('edit_user', {'id': id}) }}" >{% trans from 'EgilsUserBundle' %}user.edit{% endtrans %}</a>]
-    [<a href="{{ path('remove_user', {'id': user.getId()}) }}" >{% trans from 'EgilsUserBundle' %}user.delete{% endtrans %}</a>]
+    <div style="margin-top: 10px">
+        [<a href="{{ path('edit_user', {'id': id}) }}" >{% trans from 'EgilsUserBundle' %}user.edit{% endtrans %}</a>]
+        [<a href="{{ path('remove_user', {'id': user.getId()}) }}" >{% trans from 'EgilsUserBundle' %}user.delete{% endtrans %}</a>]
+    </div>
 {% endblock body %}

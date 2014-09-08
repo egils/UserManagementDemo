@@ -10,11 +10,13 @@
 
 namespace Egils\UserBundle\Model;
 
+use Egils\GroupsBundle\Model\GroupInterface;
+
 /**
  * Class User.
  * @package Egils\UserBundle\Model
  */
-class User implements UserInterface
+abstract class User implements UserInterface
 {
 
     /**
@@ -28,7 +30,12 @@ class User implements UserInterface
     protected $name;
 
     /**
-     * {@inheritdoc}
+     * @var GroupInterface[]|array
+     */
+    protected $groups;
+
+    /**
+     * @inheritdoc
      */
     public function setId($id)
     {
@@ -38,7 +45,7 @@ class User implements UserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getId()
     {
@@ -46,7 +53,7 @@ class User implements UserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function setName($name)
     {
@@ -56,10 +63,44 @@ class User implements UserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function hasGroup(GroupInterface $group)
+    {
+        return in_array($group, $this->groups);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function addGroup(GroupInterface $group)
+    {
+        if (false === $this->hasGroup($group)) {
+            $this->groups[] = $group;
+        }
     }
 }

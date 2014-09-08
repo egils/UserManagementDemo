@@ -95,4 +95,20 @@ class GroupManager extends BaseGroupManager
     {
         return $this->class;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all()
+    {
+        return $this->repository->findAll();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findMany(array $ids)
+    {
+        return $this->repository->findBy(array('id' => $ids));
+    }
 }

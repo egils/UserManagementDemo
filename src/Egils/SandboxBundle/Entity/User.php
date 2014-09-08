@@ -10,6 +10,8 @@
 
 namespace Egils\SandboxBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Egils\GroupsBundle\Model\GroupInterface;
 use Egils\UserBundle\Model\User as BaseUser;
 
 /**
@@ -18,5 +20,46 @@ use Egils\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->groups = new ArrayCollection();
+    }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param ArrayCollection $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @param GroupInterface $group
+     * @return bool
+     */
+    public function hasGroup(GroupInterface $group)
+    {
+        return $this->groups->contains($group);
+    }
+
+    /**
+     * @param GroupInterface $group
+     */
+    public function addGroup(GroupInterface $group)
+    {
+        if (false === $this->hasGroup($group)) {
+            $this->groups->add($group);
+        }
+    }
 }

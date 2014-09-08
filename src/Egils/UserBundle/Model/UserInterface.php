@@ -10,6 +10,8 @@
 
 namespace Egils\UserBundle\Model;
 
+use Egils\GroupsBundle\Model\GroupInterface;
+
 /**
  * Interface UserInterface
  * @package Egils\UserBundle\Model
@@ -48,4 +50,25 @@ interface UserInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * @return GroupInterface[]
+     */
+    public function getGroups();
+
+    /**
+     * @param GroupInterface[] $groups
+     */
+    public function setGroups($groups);
+
+    /**
+     * @param GroupInterface $group
+     * @return bool
+     */
+    public function hasGroup(GroupInterface $group);
+
+    /**
+     * @param GroupInterface $group
+     */
+    public function addGroup(GroupInterface $group);
 }

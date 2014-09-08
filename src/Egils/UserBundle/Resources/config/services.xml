@@ -4,17 +4,27 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="egils_user.example.class">Egils\UserBundle\Example</parameter>
+        <parameter key="egils_user.form_factory.user.class">Egils\UserBundle\Form\Factory\UserFormFactory</parameter>
+        <parameter key="egils_user.form.type.user_groups.class">Egils\UserBundle\Form\UserGroupsType</parameter>
+        <parameter key="egils_user.form.type.user.class">Egils\UserBundle\Form\UserType</parameter>
     </parameters>
 
     <services>
-        <service id="egils_user.example" class="%egils_user.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="egils_user.form_factory.user" class="%egils_user.form_factory.user.class%">
+            <argument type="service" id="form.factory" />
+        </service>
+
+        <service id="egils_user.form.type.user_groups" class="%egils_user.form.type.user_groups.class%">
+            <argument type="service" id="egils_groups.manager.group" />
+            <tag name="form.type" alias="egils_user_groups" />
+        </service>
+
+        <service id="egils_user.form.type.user" class="%egils_user.form.type.user.class%">
+            <argument>%egils_user.model.user.class%</argument>
+            <tag name="form.type" alias="egils_user" />
         </service>
     </services>
-    -->
+
 </container>

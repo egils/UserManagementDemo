@@ -14,7 +14,7 @@ namespace Egils\GroupsBundle\Model;
  * Class Group
  * @package Egils\GroupsBundle\Model
  */
-class Group implements GroupInterface
+abstract class Group implements GroupInterface
 {
 
     /**

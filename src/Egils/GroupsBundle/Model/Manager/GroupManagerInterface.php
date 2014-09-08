@@ -52,6 +52,21 @@ interface GroupManagerInterface
     public function clear();
 
     /**
+     * Get all groups.
+     *
+     * @return GroupInterface[]
+     */
+    public function all();
+
+    /**
+     * Get groups by list of identifiers.
+     *
+     * @param array $ids
+     * @return GroupInterface[]
+     */
+    public function findMany(array $ids);
+
+    /**
      * Get Group object class name.
      *
      * @return string

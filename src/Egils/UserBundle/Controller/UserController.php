@@ -10,6 +10,7 @@
 
 namespace Egils\UserBundle\Controller;
 
+use Egils\UserBundle\Form\Factory\UserFormFactory;
 use Egils\UserBundle\Form\UserType;
 use Egils\UserBundle\Model\Manager\UserManagerInterface;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -36,6 +37,14 @@ class UserController extends FOSRestController
     private function getUserManager()
     {
         return $this->get('egils_user.manager.user');
+    }
+
+    /**
+     * @return UserFormFactory
+     */
+    private function getUserTypeFormFactory()
+    {
+        return $this->get('egils_user.form_factory.user');
     }
 
     /**
@@ -119,7 +128,9 @@ class UserController extends FOSRestController
      */
     public function newUserAction()
     {
-        return $this->createForm(new UserType());
+        $user = $this->getUserManager()->create();
+
+        return $this->getUserTypeFormFactory()->create($user);
     }
 
     /**
@@ -150,7 +161,7 @@ class UserController extends FOSRestController
             throw new NotFoundHttpException("User does not exist.");
         }
 
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->getUserTypeFormFactory()->create($user);
 
         return $form;
     }
@@ -179,7 +190,7 @@ class UserController extends FOSRestController
     public function postUserAction(Request $request)
     {
         $user = $this->getUserManager()->create();
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->getUserTypeFormFactory()->create($user);
 
         $form->submit($request);
         if ($form->isValid()) {
@@ -226,7 +237,7 @@ class UserController extends FOSRestController
             $statusCode = Codes::HTTP_NO_CONTENT;
         }
 
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->getUserTypeFormFactory()->create($user);
 
         $form->submit($request);
         if ($form->isValid()) {
