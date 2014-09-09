@@ -14,3 +14,8 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+liip_functional_test:
+    authentication:
+        username: admin
+        password: notSoSecret

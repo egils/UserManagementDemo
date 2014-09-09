@@ -92,7 +92,7 @@ class GroupController extends FOSRestController
     public function getGroupAction(Request $request, $id)
     {
         $group = $this->getGroupManager()->find($id);
-        if (false === $group) {
+        if (null === $group) {
             throw $this->createNotFoundException("Group does not exist.");
         }
 
@@ -146,7 +146,7 @@ class GroupController extends FOSRestController
     {
         $group = $this->getGroupManager()->find($id);
 
-        if (false === $group) {
+        if (null === $group) {
             throw new NotFoundHttpException("Group does not exist.");
         }
 

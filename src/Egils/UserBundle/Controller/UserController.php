@@ -101,7 +101,7 @@ class UserController extends FOSRestController
     public function getUserAction(Request $request, $id)
     {
         $user = $this->getUserManager()->find($id);
-        if (false === $user) {
+        if (null === $user) {
             throw $this->createNotFoundException("User does not exist.");
         }
 
@@ -157,7 +157,7 @@ class UserController extends FOSRestController
     {
         $user = $this->getUserManager()->find($id);
 
-        if (false === $user) {
+        if (null === $user) {
             throw new NotFoundHttpException("User does not exist.");
         }
 

@@ -27,6 +27,11 @@
         "hautelook/templated-uri-bundle": "~2.0",
         "willdurand/rest-extra-bundle": "~1.0"
     },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "phpunit/phpunit": "4.2.*",
+        "liip/functional-test-bundle":"dev-master"
+    },
     "conflict": {
         "symfony/routing": "2.4.1"
     },
