@@ -24,12 +24,6 @@ class GroupControllerTest extends WebTestCase
      */
     public function setUp()
     {
-        $className = $this->getContainer()->get('egils_user.manager.group')->getClass();
-        $em = $this->getContainer()->get('doctrine')->getManager();
-
-        $metadata = $em->getClassMetaData($className);
-        $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-
         $classes = array(
             'Egils\UserBundle\Tests\Fixtures\LoadGroupData',
         );
