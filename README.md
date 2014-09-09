@@ -1,7 +1,7 @@
 Demo user management application
 ================================
 
-[![Build Status](https://magnum.travis-ci.com/egils/UserManagementDemo.svg?token=yaf3qhXqQD2zHyWnwiET&branch=master)](https://magnum.travis-ci.com/egils/UserManagementDemo)
+[![Build Status](https://travis-ci.org/egils/UserManagementDemo.svg)](https://travis-ci.org/egils/UserManagementDemo)
 
 Demo application.
 
